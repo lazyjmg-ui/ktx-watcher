@@ -1,0 +1,5 @@
+.env
+__pycache__/
+# 참고: last_state.json, tg_offset.txt 는 GitHub Actions가 "다음 실행 때 기억"하려고
+# 일부러 저장소에 커밋합니다. 로컬 PC에서만 계속 돌릴 거라면 이 두 파일도
+# 여기에 추가해서 git이 무시하게 해도 됩니다.
