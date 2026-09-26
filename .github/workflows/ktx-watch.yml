@@ -1,1 +1,39 @@
+name: KTX 빈자리 확인
 
+on:
+  schedule:
+    - cron: "*/20 * * * *"   # 20분마다 실행 (숫자만 바꾸면 주기 조절 가능, 아래 가이드 참고)
+  workflow_dispatch: {}       # GitHub 화면에서 "Run workflow" 버튼으로 수동 실행도 가능
+
+# 워크플로가 저장소에 상태 파일을 커밋(저장)할 수 있게 권한 부여
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 코드 가져오기
+        uses: actions/checkout@v4
+
+      - name: 파이썬 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 필요한 패키지 설치
+        run: pip install -r requirements.txt
+
+      - name: KTX 한 번 조회하기
+        env:
+          KORAIL_ID: ${{ secrets.KORAIL_ID }}
+          KORAIL_PW: ${{ secrets.KORAIL_PW }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python watcher.py --once
+
+      - name: 감시 상태를 저장소에 저장 (다음 실행 때 기억하려고)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "자동 업데이트: 감시 상태 저장"
+          file_pattern: "watches.json last_state.json tg_offset.txt"
