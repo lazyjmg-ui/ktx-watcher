@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "label": "추석 귀성 - 서울→부산",
+    "dep": "부산",
+    "arr": "광명",
+    "date": "2026-09-27",
+    "earliest_time": "15:00",
+    "latest_time": "18:00",
+    "seat_pref": "any",
+    "allow_standing": false,
+    "auto_hold": false,
+    "active": true
+  }
+]
