@@ -2,14 +2,14 @@
   {
     "id": 1,
     "label": "추석 귀성 - 서울→부산",
-    "dep": "부산",
-    "arr": "광명",
-    "date": "2026-09-27",
-    "earliest_time": "15:00",
-    "latest_time": "18:00",
+    "dep": "광명",
+    "arr": "여수EXPO",
+    "date": "2026-10-22",
+    "earliest_time": "16:00",
+    "latest_time": "23:00",
     "seat_pref": "any",
     "allow_standing": false,
-    "auto_hold": false,
+    "auto_hold": true,
     "active": true
   }
 ]
